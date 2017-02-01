@@ -28,7 +28,7 @@ class VideoCRUDTest extends TestBase {
   public function testVideoIngestion($video_id) {
     $request = IngestRequest::createRequest('http://download.blender.org/peach/bigbuckbunny_movies/big_buck_bunny_480p_surround-fix.avi', 'high-bandwidth-devices');
     if (!empty($this->callback_addr_remote)) {
-      $request->setCallbacks([$this->callback_addr_remote]);
+      $request->setCallbacks(array($this->callback_addr_remote));
     }
     $ingest = $this->di->createIngest($video_id, $request);
     $this->assertNotEmpty($ingest->getId());
@@ -100,15 +100,15 @@ class VideoCRUDTest extends TestBase {
     $force_stop = false;
     $cue_point->setForceStop(false);
 
-    $video->setCuePoints([$cue_point]);
+    $video->setCuePoints(array($cue_point));
 
-    $tags = [
+    $tags = array(
       strtolower(self::generateRandomString(5)),
       strtolower(self::generateRandomString(5)),
       strtolower(self::generateRandomString(5)),
       strtolower(self::generateRandomString(5)),
       strtolower(self::generateRandomString(5)),
-    ];
+    );
 
     sort($tags);
     $video->setTags($tags);
@@ -141,7 +141,7 @@ class VideoCRUDTest extends TestBase {
     $this->assertEquals($video_id, $result->getId(), 'Video IDs should be equals');
     $this->assertEquals($name, $result->getName(), 'Names should be updated');
     $this->assertEquals($description, $result->getDescription(), 'Description should be updated');
-    $this->assertEquals([$cue_point], $result->getCuePoints(), 'CuePoints should be updated');
+    $this->assertEquals(array($cue_point), $result->getCuePoints(), 'CuePoints should be updated');
     $this->assertEquals($cue_name, $result->getCuePoints()[0]->getName(), 'Cue Names should be updated');
     $this->assertEquals($time, $result->getCuePoints()[0]->getTime(), 'Times should be updated');
     $this->assertEquals($force_stop, $result->getCuePoints()[0]->getForceStop(), 'Force should be updated');

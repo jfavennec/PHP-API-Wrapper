@@ -156,23 +156,23 @@ class Video extends ObjectBase {
     $this->applyProperty($json, 'account_id');
     $this->applyProperty($json, 'complete');
     $this->applyProperty($json, 'created_at');
-    $this->applyProperty($json, 'cue_points', NULL, CuePoint::class, TRUE);
+    $this->applyProperty($json, 'cue_points', NULL, '\Brightcove\Object\Video\CuePoint', TRUE);
     $this->applyProperty($json, 'custom_fields');
     $this->applyProperty($json, 'description');
     $this->applyProperty($json, 'duration');
     $this->applyProperty($json, 'economics');
     $this->applyProperty($json, 'folder_id');
-    $this->applyProperty($json, 'geo', NULL, GEO::class);
-    $this->applyProperty($json, 'images', NULL, Image::class, TRUE);
-    $this->applyProperty($json, 'link', NULL, Link::class);
+    $this->applyProperty($json, 'geo', NULL, '\Brightcove\Object\Video\GEO');
+    $this->applyProperty($json, 'images', NULL, '\Brightcove\Object\Video\Image', TRUE);
+    $this->applyProperty($json, 'link', NULL, '\Brightcove\Object\Video\Link');
     $this->applyProperty($json, 'long_description');
     $this->applyProperty($json, 'name');
     $this->applyProperty($json, 'reference_id');
-    $this->applyProperty($json, 'schedule', NULL, Schedule::class);
-    $this->applyProperty($json, 'sharing', NULL, Sharing::class);
+    $this->applyProperty($json, 'schedule', NULL, '\Brightcove\Object\Video\Schedule');
+    $this->applyProperty($json, 'sharing', NULL, '\Brightcove\Object\Video\Sharing');
     $this->applyProperty($json, 'state');
     $this->applyProperty($json, 'tags');
-    $this->applyProperty($json, 'text_tracks', NULL, TextTrack::class, TRUE);
+    $this->applyProperty($json, 'text_tracks', NULL, '\Brightcove\Object\Video\TextTrack', TRUE);
     $this->applyProperty($json, 'updated_at');
   }
 

@@ -64,7 +64,7 @@ class PMTest extends TestBase {
    */
   public function testUpdateAndPublishConfiguration(Player $player) {
     $master = $player->getBranches()->getMaster()->getConfiguration();
-    $posterconf = ['highres' => BRIGHTCOVE_PLAYER_TEST_POSTER];
+    $posterconf = array('highres' => BRIGHTCOVE_PLAYER_TEST_POSTER);
     $master->setMedia((new Media())->setPoster($posterconf));
     $this->pm->updatePlayerConfigurationBranch($player->getId(), $master);
     $player = $this->pm->getPlayer($player->getId());

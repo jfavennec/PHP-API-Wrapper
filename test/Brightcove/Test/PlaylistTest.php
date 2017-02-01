@@ -14,7 +14,7 @@ class PlaylistTest extends TestBase {
    * @return Video[]
    */
   public function testCreateVideos() {
-    $videos = [];
+    $videos = array();
     for ($i = 0; $i < 10; $i++) {
       $video = $this->createRandomVideoObject();
       $created_video = $this->cms->createVideo($video);
@@ -40,7 +40,7 @@ class PlaylistTest extends TestBase {
 
     $this->assertEquals($name, $returnedName);
 
-    return [$playlist, $videos];
+    return array($playlist, $videos);
   }
 
   /**
@@ -62,7 +62,7 @@ class PlaylistTest extends TestBase {
 
     $this->assertEquals($videoIds, $createdVideoIds);
 
-    return [$playlist, $videos];
+    return array($playlist, $videos);
   }
 
   /**
@@ -84,7 +84,7 @@ class PlaylistTest extends TestBase {
 
     $this->assertEquals($description, $createdDescription);
 
-    return [$playlist, $videos];
+    return array($playlist, $videos);
   }
 
   /**
@@ -99,14 +99,14 @@ class PlaylistTest extends TestBase {
     $playlist = $input[0];
     /** @var Video[] $videos */
     $videos = $input[1];
-    $playlist->setVideoIds([]);
+    $playlist->setVideoIds(array());
     $videoIds = $playlist->getVideoIds();
     $playlist = $this->cms->updatePlaylist($playlist);
     $createdVideoIds = $playlist->getVideoIds();
 
     $this->assertEquals($videoIds, $createdVideoIds);
 
-    return [$playlist, $videos];
+    return array($playlist, $videos);
   }
 
   /**

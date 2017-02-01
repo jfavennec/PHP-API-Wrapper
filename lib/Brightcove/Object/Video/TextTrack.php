@@ -60,7 +60,7 @@ class TextTrack extends ObjectBase {
     $this->applyProperty($json, 'kind');
     $this->applyProperty($json, 'mime_type');
     $this->applyProperty($json, 'asset_id');
-    $this->applyProperty($json, 'sources', NULL, TextTrackSource::class, TRUE);
+    $this->applyProperty($json, 'sources', NULL, '\Brightcove\Object\Video\TextTrackSource', TRUE);
     $this->applyProperty($json, 'default');
   }
 

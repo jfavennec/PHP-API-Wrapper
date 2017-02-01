@@ -50,7 +50,7 @@ class Player extends ObjectBase {
     parent::applyJSON($json);
 
     $this->applyProperty($json, 'accountId');
-    $this->applyProperty($json, 'branches', NULL, BranchList::class);
+    $this->applyProperty($json, 'branches', NULL, '\Brightcove\Object\Player\Branch\BranchList');
     $this->applyProperty($json, 'description');
     $this->applyProperty($json, 'id');
     $this->applyProperty($json, 'name');

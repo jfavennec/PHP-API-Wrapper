@@ -13,14 +13,14 @@ class ObjectBase implements ObjectInterface {
    *
    * @var array
    */
-  private $changedFields = [];
+  private $changedFields = array();
 
   /**
    * Key-value pairs of field aliases. This will be used when the field gets serialized.
    *
    * @var array
    */
-  protected $fieldAliases = [];
+  protected $fieldAliases = array();
 
   /**
    * Marks a field as changed.
@@ -54,7 +54,7 @@ class ObjectBase implements ObjectInterface {
   }
 
   public function postJSON() {
-    $data = [];
+    $data = array();
     foreach ($this as $field => $val) {
       if ($field === 'changedFields' || $field === 'fieldAliases' || $val === NULL) {
         continue;
@@ -64,7 +64,7 @@ class ObjectBase implements ObjectInterface {
         $data[$field] = $val->postJSON();
       }
       else if (is_array($val)) {
-        $data[$field] = [];
+        $data[$field] = array();
         foreach ($val as $k => $v) {
           if ($v instanceof ObjectInterface) {
             $data[$field][$k] = $v->postJSON();
@@ -81,7 +81,7 @@ class ObjectBase implements ObjectInterface {
   }
 
   public function patchJSON() {
-    $data = [];
+    $data = array();
     foreach ($this->changedFields as $field) {
       $val = $this->{$field};
       if ($val === NULL) {
@@ -93,7 +93,7 @@ class ObjectBase implements ObjectInterface {
       if ($val instanceof ObjectInterface) {
         $data[$field] = $val->patchJSON();
       } else if (is_array($val)) {
-        $data[$field] = [];
+        $data[$field] = array();
         foreach ($val as $k => $v) {
           if ($v instanceof ObjectInterface) {
             $data[$field][$k] = $v->patchJSON();
@@ -106,7 +106,7 @@ class ObjectBase implements ObjectInterface {
       }
     }
 
-    $this->changedFields = [];
+    $this->changedFields = array();
 
     return $data;
   }
@@ -146,7 +146,7 @@ class ObjectBase implements ObjectInterface {
     }
     else {
       if ($is_array) {
-        $arr = [];
+        $arr = array();
         foreach ($json[$json_name] as $k => $v) {
           $class = new $classname();
           $class->applyJSON($v);

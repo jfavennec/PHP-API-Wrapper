@@ -25,7 +25,7 @@ class Media extends ObjectBase {
 
     $this->applyProperty($json, 'name');
     $this->applyProperty($json, 'poster');
-    $this->applyProperty($json, 'sources', NULL, MediaSource::class, TRUE);
+    $this->applyProperty($json, 'sources', NULL, '\Brightcove\Object\Player\Branch\Configuration\MediaSource', TRUE);
   }
 
   /**

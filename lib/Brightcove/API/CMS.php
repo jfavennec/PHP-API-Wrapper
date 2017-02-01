@@ -40,7 +40,7 @@ class CMS extends API {
     if (strlen($query) > 0) {
       $query = '?' . substr($query, 1);
     }
-    return $this->cmsRequest('GET', "/videos{$query}", Video::class, TRUE);
+    return $this->cmsRequest('GET', "/videos{$query}", '\Brightcove\Object\Video\Video', TRUE);
   }
 
   /**
@@ -63,7 +63,7 @@ class CMS extends API {
    * @return Images
    */
   public function getVideoImages($video_id) {
-    return $this->cmsRequest('GET', "/videos/{$video_id}/images", Images::class);
+    return $this->cmsRequest('GET', "/videos/{$video_id}/images", '\Brightcove\Object\Video\Images');
   }
 
   /**
@@ -72,11 +72,11 @@ class CMS extends API {
    * @return Source[]
    */
   public function getVideoSources($video_id) {
-    return $this->cmsRequest('GET', "/videos/{$video_id}/sources", Source::class, TRUE);
+    return $this->cmsRequest('GET', "/videos/{$video_id}/sources", '\Brightcove\Object\Video\Source', TRUE);
   }
 
   public function getVideoFields() {
-    return $this->cmsRequest('GET', "/video_fields", CustomFields::class, FALSE);
+    return $this->cmsRequest('GET', "/video_fields", '\Brightcove\Object\CustomFields', FALSE);
   }
 
   /**
@@ -85,7 +85,7 @@ class CMS extends API {
    * @return Video $video
    */
   public function getVideo($video_id) {
-    return $this->cmsRequest('GET', "/videos/{$video_id}", Video::class);
+    return $this->cmsRequest('GET', "/videos/{$video_id}", '\Brightcove\Object\Video\Video');
   }
 
   /**
@@ -94,7 +94,7 @@ class CMS extends API {
    * @return Video $video
    */
   public function createVideo(Video $video) {
-    return $this->cmsRequest('POST', '/videos', Video::class, FALSE, $video);
+    return $this->cmsRequest('POST', '/videos', '\Brightcove\Object\Video\Video', FALSE, $video);
   }
 
   /**
@@ -104,7 +104,7 @@ class CMS extends API {
    */
   public function updateVideo(Video $video) {
     $video->fieldUnchanged('account_id', 'id');
-    return $this->cmsRequest('PATCH', "/videos/{$video->getId()}", Video::class, FALSE, $video);
+    return $this->cmsRequest('PATCH', "/videos/{$video->getId()}", '\Brightcove\Object\Video\Video', FALSE, $video);
   }
 
   /**
@@ -142,7 +142,7 @@ class CMS extends API {
     if (strlen($query) > 0) {
       $query = '?' . substr($query, 1);
     }
-    return $this->cmsRequest('GET', "/playlists{$query}", Playlist::class, TRUE);
+    return $this->cmsRequest('GET', "/playlists{$query}", '\Brightcove\Object\Playlist', TRUE);
   }
 
   /**
@@ -150,7 +150,7 @@ class CMS extends API {
    * @return Playlist
    */
   public function createPlaylist(Playlist $playlist) {
-    return $this->cmsRequest('POST', '/playlists', Playlist::class, FALSE, $playlist);
+    return $this->cmsRequest('POST', '/playlists', '\Brightcove\Object\Playlist', FALSE, $playlist);
   }
 
   /**
@@ -158,7 +158,7 @@ class CMS extends API {
    * @return Playlist
    */
   public function getPlaylist($playlist_id) {
-    return $this->cmsRequest('GET', "/playlists/{$playlist_id}", Playlist::class);
+    return $this->cmsRequest('GET', "/playlists/{$playlist_id}", '\Brightcove\Object\Playlist');
   }
 
   /**
@@ -167,7 +167,7 @@ class CMS extends API {
    */
   public function updatePlaylist(Playlist $playlist) {
     $playlist->fieldUnchanged('id');
-    return $this->cmsRequest('PATCH', "/playlists/{$playlist->getId()}", Playlist::class, FALSE, $playlist);
+    return $this->cmsRequest('PATCH', "/playlists/{$playlist->getId()}", '\Brightcove\Object\Playlist', FALSE, $playlist);
   }
 
   /**
@@ -194,14 +194,14 @@ class CMS extends API {
    * @return Video[]
    */
   public function getVideosInPlaylist($playlist_id) {
-    return $this->cmsRequest('GET', "/playlists/{$playlist_id}/videos", Video::class, TRUE);
+    return $this->cmsRequest('GET', "/playlists/{$playlist_id}/videos", '\Brightcove\Object\Video\Video', TRUE);
   }
 
   /**
    * @return Subscription[]|null
    */
   public function getSubscriptions() {
-    return $this->cmsRequest('GET', '/subscriptions', Subscription::class, TRUE);
+    return $this->cmsRequest('GET', '/subscriptions', '\Brightcove\Object\Video\Subscription', TRUE);
   }
 
   /**
@@ -209,6 +209,6 @@ class CMS extends API {
    * @return Subscription|null
    */
   public function createSubscription(SubscriptionRequest $request) {
-    return $this->cmsRequest('POST', '/subscriptions', Subscription::class, FALSE, $request);
+    return $this->cmsRequest('POST', '/subscriptions', '\Brightcove\Object\Video\Subscription', FALSE, $request);
   }
 }

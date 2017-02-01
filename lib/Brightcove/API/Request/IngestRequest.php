@@ -61,7 +61,7 @@ class IngestRequest extends ObjectBase {
     $this->applyProperty($json, 'poster');
     $this->applyProperty($json, 'thumbnail');
     $this->applyProperty($json, 'capture_images');
-    $this->applyProperty($json, 'text_tracks', NULL, IngestTextTrack::class, TRUE);
+    $this->applyProperty($json, 'text_tracks', NULL, '\Brightcove\API\Request\IngestTextTrack', TRUE);
   }
 
   /**

@@ -18,7 +18,7 @@ class PM extends API {
    * @return PlayerList|null
    */
   public function listPlayers() {
-    return $this->pmRequest('GET', '/players', PlayerList::class, FALSE);
+    return $this->pmRequest('GET', '/players', '\Brightcove\Object\Player\PlayerList', FALSE);
   }
 
   /**
@@ -26,7 +26,7 @@ class PM extends API {
    * @return CreateResult|null
    */
   public function createPlayer(Player $player) {
-    return $this->pmRequest('POST', '/players', CreateResult::class, FALSE, $player);
+    return $this->pmRequest('POST', '/players', '\Brightcove\Object\Player\CreateResult', FALSE, $player);
   }
 
   /**
@@ -34,7 +34,7 @@ class PM extends API {
    * @return Player|null
    */
   public function getPlayer($player_id) {
-    return $this->pmRequest('GET', "/players/{$player_id}", Player::class);
+    return $this->pmRequest('GET', "/players/{$player_id}", '\Brightcove\Object\Player\Branch\Configuration\Player');
   }
 
   /**
@@ -42,7 +42,7 @@ class PM extends API {
    * @return CreateResult|null
    */
   public function updatePlayer(Player $player) {
-    return $this->pmRequest('PATCH', "/players/{$player->getId()}", CreateResult::class, FALSE, $player);
+    return $this->pmRequest('PATCH', "/players/{$player->getId()}", '\Brightcove\Object\Player\CreateResult', FALSE, $player);
   }
 
   public function deletePlayer($player_id) {
@@ -56,7 +56,7 @@ class PM extends API {
    * @return Configuration|null
    */
   public function getPlayerConfigurationBranch($player_id, $branch_name) {
-    return $this->pmRequest('GET', "/players/{$player_id}/configuration/{$branch_name}", Configuration::class);
+    return $this->pmRequest('GET', "/players/{$player_id}/configuration/{$branch_name}", '\Brightcove\Object\Player\Branch\Configuration\Configuration');
   }
 
   /**
@@ -65,7 +65,7 @@ class PM extends API {
    * @return CreateResult|null
    */
   public function updatePlayerConfigurationBranch($player_id, Configuration $config) {
-    return $this->pmRequest('PATCH', "/players/{$player_id}/configuration", CreateResult::class, FALSE, $config);
+    return $this->pmRequest('PATCH', "/players/{$player_id}/configuration", '\Brightcove\Object\Player\CreateResult', FALSE, $config);
   }
 
   /**
@@ -74,7 +74,7 @@ class PM extends API {
    * @return CreateResult|null
    */
   public function publishPlayer($player_id, $comment = '') {
-    return $this->pmRequest('POST', "/players/{$player_id}/publish", CreateResult::class, FALSE, (new PublishComment())->setComment($comment));
+    return $this->pmRequest('POST', "/players/{$player_id}/publish", '\Brightcove\Object\Player\CreateResult', FALSE, (new PublishComment())->setComment($comment));
   }
 
 }

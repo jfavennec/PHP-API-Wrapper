@@ -18,7 +18,7 @@ class Player extends ObjectBase {
   public function applyJSON(array $json) {
     parent::applyJSON($json);
 
-    $this->applyProperty($json, 'template', NULL, PlayerTemplate::class);
+    $this->applyProperty($json, 'template', NULL, '\Brightcove\Object\Player\Branch\Configuration\PlayerTemplate');
     $this->applyProperty($json, 'autoplay');
   }
 

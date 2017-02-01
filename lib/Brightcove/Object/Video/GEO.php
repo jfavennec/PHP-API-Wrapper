@@ -10,7 +10,7 @@ use Brightcove\Object\ObjectBase;
  * This object will contain geo-restriction properties for the video.
  */
 class GEO extends ObjectBase {
-  protected $countries = [];
+  protected $countries = array();
   protected $exclude_countries = FALSE;
   protected $restricted = FALSE;
 

@@ -18,8 +18,8 @@ class BranchList extends ObjectBase {
   public function applyJSON(array $json) {
     parent::applyJSON($json);
 
-    $this->applyProperty($json, 'master', NULL, Branch::class);
-    $this->applyProperty($json, 'preview', NULL, Branch::class);
+    $this->applyProperty($json, 'master', NULL, '\Brightcove\Object\Player\Branch\Branch');
+    $this->applyProperty($json, 'preview', NULL, '\Brightcove\Object\Player\Branch\Branch');
   }
 
   /**

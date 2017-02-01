@@ -16,7 +16,7 @@ class SmartPlaylistTest extends TestBase {
    * @return Video[]
    */
   public function testCreateVideos() {
-    $videos = [];
+    $videos = array();
     $videoTag[0] = $this->generateRandomString(8);
     for ($i = 0; $i < 10; $i++) {
       $video = $this->createRandomVideoObject();
@@ -44,7 +44,7 @@ class SmartPlaylistTest extends TestBase {
 
     $this->assertEquals($name, $returnedName);
 
-    return [$playlist, $videos];
+    return array($playlist, $videos);
   }
 
   /**
@@ -67,7 +67,7 @@ class SmartPlaylistTest extends TestBase {
 
     $this->assertEquals($search, $returnedSearch);
 
-    return [$playlist, $videos];
+    return array($playlist, $videos);
   }
 
   /**

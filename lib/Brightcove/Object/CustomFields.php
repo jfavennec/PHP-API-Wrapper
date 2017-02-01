@@ -21,8 +21,8 @@ class CustomFields extends ObjectBase {
   public function applyJSON(array $json) {
     parent::applyJSON($json);
     $this->applyProperty($json, 'max_custom_fields');
-    $this->applyProperty($json, 'custom_fields', NULL, CustomField::class, TRUE);
-    $this->applyProperty($json, 'standard_fields', NULL, CustomField::class, TRUE);
+    $this->applyProperty($json, 'custom_fields', NULL, '\Brightcove\Object\CustomField', TRUE);
+    $this->applyProperty($json, 'standard_fields', NULL, '\Brightcove\Object\CustomField', TRUE);
   }
 
   /**

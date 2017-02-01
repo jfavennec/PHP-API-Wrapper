@@ -84,12 +84,12 @@ class Configuration extends ObjectBase {
   public function applyJSON(array $json) {
     parent::applyJSON($json);
 
-    $this->applyProperty($json, 'css', NULL, CSS::class);
-    $this->applyProperty($json, 'media', NULL, Media::class);
-    $this->applyProperty($json, 'player', NULL, Player::class);
+    $this->applyProperty($json, 'css', NULL, '\Brightcove\Object\Player\Branch\Configuration\CSS');
+    $this->applyProperty($json, 'media', NULL, '\Brightcove\Object\Player\Branch\Configuration\Media');
+    $this->applyProperty($json, 'player', NULL, '\Brightcove\Object\Player\Branch\Configuration\Player');
     $this->applyProperty($json, 'scripts');
     $this->applyProperty($json, 'stylesheets');
-    $this->applyProperty($json, 'plugins', NULL, Plugin::class, TRUE);
+    $this->applyProperty($json, 'plugins', NULL, '\Brightcove\Object\Player\Branch\Configuration\Plugin', TRUE);
     $this->applyProperty($json, 'errors');
     $this->applyProperty($json, 'fullscreenControl');
     $this->applyProperty($json, 'languages');
@@ -97,8 +97,8 @@ class Configuration extends ObjectBase {
     $this->applyProperty($json, 'preload');
     $this->applyProperty($json, 'skin');
     $this->applyProperty($json, 'techOrder');
-    $this->applyProperty($json, 'video_cloud', NULL, VideoCloud::class);
-    $this->applyProperty($json, 'studio_configuration', NULL, StudioConfiguration::class);
+    $this->applyProperty($json, 'video_cloud', NULL, '\Brightcove\Object\Player\Branch\Configuration\VideoCloud');
+    $this->applyProperty($json, 'studio_configuration', NULL, '\Brightcove\Object\Player\Branch\Configuration\StudioConfiguration');
   }
 
   /**

@@ -18,7 +18,7 @@ class PlayerList extends ObjectBase {
   public function applyJSON(array $json) {
     parent::applyJSON($json);
 
-    $this->applyProperty($json, 'items', NULL, Player::class, TRUE);
+    $this->applyProperty($json, 'items', NULL, '\Brightcove\Object\Player\Branch\Configuration\Player', TRUE);
     $this->applyProperty($json, 'item_count');
   }
 

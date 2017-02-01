@@ -24,7 +24,7 @@ class Branch extends ObjectBase {
   public function applyJSON(array $json) {
     parent::applyJSON($json);
 
-    $this->applyProperty($json, 'configuration', NULL, Configuration::class);
+    $this->applyProperty($json, 'configuration', NULL, '\Brightcove\Object\Player\Branch\Configuration\Configuration');
     $this->applyProperty($json, 'updated_at');
     $this->applyProperty($json, 'preview_url');
   }

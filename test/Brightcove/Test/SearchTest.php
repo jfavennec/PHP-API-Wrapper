@@ -11,7 +11,7 @@ class VideoSearchTest extends TestBase {
    * @return Video[]
    */
   public function testCreateVideos() {
-    $videos = [];
+    $videos = array();
     for ($i = 0; $i < 10; $i++) {
       $video = $this->createRandomVideoObject();
       $created_video = $this->cms->createVideo($video);
@@ -31,7 +31,7 @@ class VideoSearchTest extends TestBase {
   public function testSearchVideos($videos) {
     sleep(1);
     $name = $videos[0]->getName();
-    $found_videos = [];
+    $found_videos = array();
     for ($i = 0; $i < 300; $i++) {
       sleep(1);
       $found_videos = $this->cms->listVideos("name:\"{$name}\"");

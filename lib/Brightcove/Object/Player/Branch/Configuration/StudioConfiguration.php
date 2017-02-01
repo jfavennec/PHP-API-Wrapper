@@ -13,7 +13,7 @@ class StudioConfiguration extends ObjectBase {
 
   public function applyJSON(array $json) {
     parent::applyJSON($json);
-    $this->applyProperty($json, 'player', NULL, StudioConfigurationPlayer::class);
+    $this->applyProperty($json, 'player', NULL, '\Brightcove\Object\Player\Branch\Configuration\StudioConfigurationPlayer');
   }
 
   /**

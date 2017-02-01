@@ -125,14 +125,14 @@ class Client {
    *   Headers in curl format: an array of lines, not an associative array.
    * @param null|string $postdata
    *   Postdata to send.
-   * @param null|callable $extraconfig
+   * @param null|\Closure $extraconfig
    *   A callback to set extra options on curl. This callback takes one argument,
    *   which is a curl resource and returns nothing.
    * @return array
    *   A two item array. The first item is the status code, the second is the
    *   response body.
    */
-  public static function HTTPRequest($method, $url, array $headers = [], $postdata = NULL, callable $extraconfig = NULL) {
+  public static function HTTPRequest($method, $url, array $headers = array(), $postdata = NULL, \Closure $extraconfig = NULL) {
     $ch = curl_init();
 
     if ($postdata !== NULL) {
@@ -140,17 +140,16 @@ class Client {
       $headers[] = 'Content-Type: application/json';
     }
 
-    curl_setopt_array($ch, [
+    curl_setopt_array($ch, array(
       CURLOPT_AUTOREFERER => TRUE,
       CURLOPT_FOLLOWLOCATION => TRUE,
       CURLOPT_RETURNTRANSFER => TRUE,
-      CURLOPT_SAFE_UPLOAD => TRUE,
       CURLOPT_MAXREDIRS => 5,
       CURLOPT_CUSTOMREQUEST => $method,
       CURLOPT_URL => $url,
       CURLOPT_HTTPHEADER => $headers,
       CURLOPT_HEADER => TRUE,
-    ]);
+    ));
 
     self::configureProxy($ch);
 
@@ -165,18 +164,18 @@ class Client {
     $code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
 
     if (self::$debugRequests) {
-      file_put_contents(self::$debugRequests, var_export([
+      file_put_contents(self::$debugRequests, var_export(array(
           'request' => "{$method} {$url}",
           'request_body' => $postdata,
           'headers' => $headers,
-          'response' => [$code, $result],
+          'response' => array($code, $result),
           'response_headers' => $res_headers,
-        ], TRUE) . "\n\n", FILE_APPEND);
+        ), TRUE) . "\n\n", FILE_APPEND);
     }
 
     curl_close($ch);
 
-    return [$code, $result];
+    return array($code, $result);
   }
 
   /**
@@ -218,7 +217,7 @@ class Client {
    */
   public static function authorize($client_id, $client_secret) {
     list($code, $response) = self::HTTPRequest('POST', 'https://oauth.brightcove.com/v3/access_token',
-      ['Content-Type: application/x-www-form-urlencoded'],
+      array('Content-Type: application/x-www-form-urlencoded'),
       'grant_type=client_credentials',
       function ($ch) use ($client_id, $client_secret) {
         curl_setopt($ch, CURLOPT_USERPWD, "{$client_id}:{$client_secret}");
@@ -269,7 +268,7 @@ class Client {
       $body = json_encode($body);
     }
     list($code, $res) = self::HTTPRequest($method, "https://{$api_type}.api.brightcove.com/v1/accounts/{$account}{$endpoint}",
-      ["Authorization: Bearer {$this->access_token}"], $body);
+      array("Authorization: Bearer {$this->access_token}"), $body);
     if ($code < 200 || $code >= 300) {
       throw new APIException("Invalid status code: expected 200-299, got {$code}.\n\n{$res}", $code, NULL, $res);
     }
@@ -281,13 +280,13 @@ class Client {
     }
 
     if ($is_array) {
-      $ret = [];
+      $ret = array();
       foreach ($json as $item) {
-        $ret[] = call_user_func([$result, 'fromJSON'], $item);
+        $ret[] = call_user_func(array($result, 'fromJSON'), $item);
       }
       return $ret;
     }
 
-    return call_user_func([$result, 'fromJSON'], $json);
+    return call_user_func(array($result, 'fromJSON'), $json);
   }
 }
